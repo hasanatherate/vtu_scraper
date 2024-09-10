@@ -1,112 +1,93 @@
-Here’s a draft for your **README** file that includes both the **PDF Downloader Scraper** and the **PDF to Excel Sheet** script. It explains the purpose, installation steps, and usage for each script.
+# VTU Results Scraper and PDF to Excel Converter
+
+This repository contains two primary Python scripts:
+
+1. **VTU Results Scraper**: A Selenium-based tool that automates the process of fetching VTU (Visvesvaraya Technological University) results by entering a series of USNs (University Seat Numbers), downloading the result PDFs, and saving them to a specified folder.
+2. **PDF to Excel Converter**: A script that extracts data from multiple result PDFs, processes the information, and converts it into an Excel sheet for further analysis.
+
+## Table of Contents
+- [Requirements](#requirements)
+- [Setup](#setup)
+- [VTU Results Scraper](#vtu-results-scraper)
+  - [Features](#features)
+  - [Usage](#usage)
+- [PDF to Excel Converter](#pdf-to-excel-converter)
+  - [Usage](#usage)
+- [License](#license)
 
 ---
 
-# VTU Results Scraper & PDF to Excel Converter
+## Requirements
 
-This repository contains two Python-based scripts:
-1. **VTU Results PDF Downloader**: Automatically fetches and downloads VTU student result PDFs from the VTU results website.
-2. **PDF to Excel Converter**: Extracts data from downloaded PDFs and converts them into an Excel sheet for easier analysis.
+- Python 3.x
+- Google Chrome (for VTU Results Scraper)
+- Brave browser (if used, requires specific configuration)
+- Installed dependencies as listed in `requirements.txt`:
+  - `selenium`
+  - `pandas`
+  - `webdriver_manager`
+  - `pdfplumber`
+  - `openpyxl`
 
-## Table of Contents
-- [VTU Results PDF Downloader](#vtu-results-pdf-downloader)
-    - [Features](#features)
-    - [Installation](#installation)
-    - [Usage](#usage)
-- [PDF to Excel Converter](#pdf-to-excel-converter)
-    - [Installation](#installation-1)
-    - [Usage](#usage-1)
-- [License](#license)
+You can install these by running:
+```bash
+pip install -r requirements.txt
+```
 
-## VTU Results PDF Downloader
+---
+
+## Setup
+
+Before using the tools, ensure you have the correct setup:
+1. **Selenium WebDriver**: ChromeDriver is required to automate the browser. The script will automatically download and configure it using `webdriver_manager`.
+2. **Tesseract** (optional): For CAPTCHA solving (if you opt to use OCR-based automation instead of manual input).
+
+---
+
+## VTU Results Scraper
 
 ### Features
-- Automates fetching student result PDFs from the VTU results page.
-- Bypasses CAPTCHA through manual user input, allowing the user to enter CAPTCHA on the website.
-- Iterates through multiple USN numbers and saves result PDFs in a specified folder.
-- Downloads PDFs without triggering the print dialog box.
-- Saves files with the format `result_[USN].pdf` in a designated folder.
-
-### Installation
-
-1. **Clone the Repository**:
-    ```bash
-    git clone https://github.com/your-username/repo-name.git
-    cd repo-name
-    ```
-
-2. **Install Dependencies**:
-    Ensure you have Python 3.9+ installed. Then install required packages:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3. **Google Chrome Installation**:
-   Ensure that Google Chrome is installed, as this script uses the Chrome WebDriver.
-
-4. **Configure the WebDriver**:
-   Ensure the appropriate version of ChromeDriver is installed to match your Chrome version:
-   ```bash
-   pip install webdriver-manager
-   ```
-
-5. **CAPTCHA Solving Service (Optional)**:
-   You may integrate a CAPTCHA solving service like CapSolver for automation, but the script currently allows manual CAPTCHA input.
+- Automates the process of entering USNs on the VTU results website.
+- Downloads result PDFs and stores them in a designated folder.
+- Supports iterating over multiple USNs.
+- Bypasses CAPTCHA by allowing the user to manually enter it on the website (currently no automated CAPTCHA solving).
 
 ### Usage
+1. Run the scraper script:
+   ```bash
+   python vtu_scraper.py
+   ```
+2. Enter the CAPTCHA manually in the browser window.
+3. The script will download the result PDFs to `/Users/abdul/Downloads/automated_pdfs` by default.
 
-1. **Update USN Range**:
-    In the `main()` function, modify the `roll_numbers` list to include the USN range you want to iterate through:
-    ```python
-    def main():
-        for i in range(1, 26):
-            usn_number = f'1BI22VL0{str(i).zfill(2)}'
-            fetch_results(usn_number)
-    ```
-
-2. **Run the Script**:
-   To start downloading result PDFs:
-    ```bash
-    python pdf_downloader.py
-    ```
-
-   The PDFs will be saved in `/Users/abdul/Downloads/automated_pdfs/` with the filenames `result_[USN].pdf`.
+#### Customization
+- You can modify the range of USNs by adjusting the loop in the `main()` function:
+   ```python
+   def main():
+       for i in range(1, 26):
+           usn = f'1BI22VL{str(i).zfill(3)}'
+           fetch_results(usn)
+   ```
 
 ---
 
 ## PDF to Excel Converter
 
 ### Features
-- Extracts tabular data from multiple result PDFs.
-- Saves extracted data into a structured CSV or Excel file for further processing.
-
-### Installation
-
-1. **Install Required Libraries**:
-    The script uses `pdfplumber` for PDF extraction and `pandas` for data manipulation:
-    ```bash
-    pip install pdfplumber pandas openpyxl
-    ```
+- Processes downloaded VTU result PDFs and extracts data using `pdfplumber`.
+- Saves the extracted data to a structured Excel sheet for easy viewing and analysis.
 
 ### Usage
-
-1. **Ensure PDFs are Stored**:
-   Ensure that all the downloaded result PDFs are stored in `/Users/abdul/Downloads/automated_pdfs/`.
-
-2. **Run the Script**:
-   To extract data from the PDFs and save it to an Excel file:
-    ```bash
-    python pdf_to_excel.py
-    ```
-
-3. **Output**:
-   The script will create an Excel file with the extracted data from the PDFs at the specified location.
+1. Run the script:
+   ```bash
+   python pdf_to_excel.py
+   ```
+2. The script will read the PDFs from `/Users/abdul/Downloads/automated_pdfs` and generate an Excel sheet with the extracted data.
 
 ---
 
 ## License
-This project is licensed under the MIT License.
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
-Let me know if you need any more adjustments or details in the README!
