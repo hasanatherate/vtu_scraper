@@ -58,7 +58,7 @@ Before using the tools, ensure you have the correct setup:
    python vtu_scraper.py
    ```
 2. Enter the CAPTCHA manually in the browser window.
-3. The script will download the result PDFs to `/Users/abdul/Downloads/automated_pdfs` by default.
+3. Add custom path to a directory where you want pdfs to be stored. Comments in the code indicate where the path must be added
 
 #### Customization
 - You can modify the range of USNs by adjusting the loop in the `main()` function:
@@ -82,7 +82,7 @@ Before using the tools, ensure you have the correct setup:
    ```bash
    python pdf_to_excel.py
    ```
-2. The script will read the PDFs from `/Users/abdul/Downloads/automated_pdfs` and generate an Excel sheet with the extracted data.
+2. The script will read the PDFs from your custom directory on your local device and generate an Excel sheet with the extracted data.
 
 ---
 
