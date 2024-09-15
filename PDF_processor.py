@@ -122,8 +122,8 @@ def create_excel_file(data, output_file):
     logging.info(f"Excel file '{output_file}' has been created with improved formatting.")
 
 def main():
-    input_folder = Path("/Users/abdul/Downloads/pdf downloads")
-    output_file = input_folder / "results13.xlsx"
+    input_folder = Path("#Add Path to all the downlaoded PDFs") #Add a path here
+    output_file = input_folder / "results.xlsx"
 
     if not input_folder.exists():
         logging.error(f"The directory {input_folder} does not exist.")
