@@ -19,9 +19,9 @@ def setup_selenium():
     
     # Setup the download directory for PDFs
     prefs = {
-        "download.default_directory": "/Users/abdul/Downloads/automated_pdfs",
+        "download.default_directory": "path",#Add a path here
         "printing.print_preview_sticky_settings.appState": '{"recentDestinations":[{"id":"Save as PDF","origin":"local"}],"selectedDestinationId":"Save as PDF","version":2}',
-        "savefile.default_directory": "/Users/abdul/Downloads/automated_pdfs",
+        "savefile.default_directory": "path",#Add custom path to save file 
         "profile.default_content_settings.popups": 0,
         "download.prompt_for_download": False,
         "download.directory_upgrade": True,
@@ -41,7 +41,7 @@ def setup_selenium():
 
 # Fetch results
 def fetch_results(usn_number):
-    direct_url = "https://results.vtu.ac.in/DJcbcs24/index.php"
+    direct_url = "https://results.vtu.ac.in/DJcbcs24/index.php" #Enter Landing page of your exam results here, this one takes you to 3rd sem results of 2024
 
     driver = setup_selenium()
 
